@@ -1,0 +1,57 @@
+# ==========================================================
+# .gitignore para Java + Spring Boot
+# ==========================================================
+
+# --- Compilação e Build ---
+target/
+build/
+*.class
+*.jar
+*.war
+*.ear
+
+# --- Logs ---
+logs/
+*.log
+
+# --- IDEs (IntelliJ, Eclipse, VS Code) ---
+# IntelliJ
+.idea/
+*.iml
+*.iws
+out/
+
+# Eclipse
+.settings/
+.project
+.classpath
+.metadata/
+.springBeans
+.sts4-cache/
+
+# VS Code
+.vscode/
+
+# --- Gradle ---
+.gradle/
+gradle-app.setting
+!gradle-wrapper.properties  # Recomenda-se commitar o wrapper
+
+# --- Maven ---
+.mvn/
+# Se você não quiser commitar o Maven Wrapper, descomente a linha abaixo:
+# .mvn/wrapper/maven-wrapper.jar
+
+# --- Arquivos do Sistema ---
+.DS_Store
+Thumbs.db
+
+# --- Segredos e Configurações de Ambiente ---
+# Evite expor senhas e chaves API
+.env
+application.properties.local
+application.yml.local
+
+# --- Cobertura de Teste ---
+coverage/
+test-reports/
