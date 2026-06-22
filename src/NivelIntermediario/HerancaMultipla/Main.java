@@ -1,7 +1,5 @@
 package NivelIntermediario.HerancaMultipla;
 
-import NivelIntermediario.SuperESubClasse.Uzumaki;
-
 public class Main {
     public static void main(String[] args) {
         /* #P30 12 Herança Múltipla - Como realmente Interfaces funcionam  */
