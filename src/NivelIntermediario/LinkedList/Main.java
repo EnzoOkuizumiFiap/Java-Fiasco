@@ -18,6 +18,30 @@ public class Main {
         ninjas.remove(2);
         System.out.println(ninjas);
 
+        // Em uma LinkedList, NÃO temos um Index, então procurar um elemento fica mais difícil!!
+        // Entretanto, cada Elemento vai estar apontando para o próximo Elemento!!
+
+        /* Exemplo:
+            Temos Naruto, Sasuke e Sakura.
+
+            -Naruto aponta para Sassuke
+            -Sasuke aponta para Sakura
+            -Sakura aponta pra ninguém!
+
+            Agora queremos adicionar o Kakashi depois do Naruto:
+            Simples, só colocamos para mudar os ponteiros!!
+
+            -Naruto aponta para Kakashi
+            -Kakashi aponta para Sasuke
+            -Sasuke aponta para Sakura
+            -Sakura aponta pra ninguém!
+
+            Com isso, não precisamos reordenar uma lista INTEIRA, apenas mudar os ponteiros!
+
+            E também não precisam fazer parte do mesmo grupo de memória!
+             Exemplo: Naruto tem referência de Memória @101 e Kakashi tem Ref de Mem @403
+             Diferente dos ArrayList, que são sequências, os LinkedList não são e trabalham com ponteiros!
+       */
 
 
         /* Agora vamos ver sobre Collections!! */
