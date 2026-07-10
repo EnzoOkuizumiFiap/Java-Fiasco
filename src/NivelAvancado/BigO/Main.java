@@ -49,7 +49,7 @@ public class Main {
         }
 
 
-        /* #P60 BigO - Não é sobre Complexidade APENAS, por favor entenda isso! */
+        /* #P60 5 BigO - Não é sobre Complexidade APENAS, por favor entenda isso! */
 
         // BigO não é sobre medir COMPLEXIDADE DE ALGORITMO, mas sim ESCALABILIDADE dos seus algoritmos!!
 
