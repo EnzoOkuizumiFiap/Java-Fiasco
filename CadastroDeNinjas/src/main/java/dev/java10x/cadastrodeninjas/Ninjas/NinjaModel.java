@@ -2,6 +2,9 @@ package dev.java10x.cadastrodeninjas.Ninjas;
 
 import dev.java10x.cadastrodeninjas.Missoes.MissoesModel;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
@@ -9,6 +12,9 @@ import java.util.List;
 
 @Entity // Transforma uma classe em uma entidade do Banco de dados
 @Table(name = "tb_cadastro") // tb -> table
+@NoArgsConstructor // Construtor Vazio
+@AllArgsConstructor // Construtor com todos os parâmetros
+@Data // Cria todos os Getters / Setters
 public class NinjaModel {
     /* #P67 5 - Entidades e persistência de dados - Tabela de Ninjas */
 
@@ -17,39 +23,13 @@ public class NinjaModel {
     private Long id;
     private String nome;
     private int idade;
+
+    @Column(unique = true)
     private String email;
-    private List<MissoesModel> missoes;
 
-    public NinjaModel() {
-    }
+    /* #P70 8 - @ManyToOne e @OneToMany - Relacionamento entre tabelas */
 
-    public NinjaModel(String nome, int idade, String email) {
-        this.nome = nome;
-        this.idade = idade;
-        this.email = email;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public int getIdade() {
-        return idade;
-    }
-
-    public void setIdade(int idade) {
-        this.idade = idade;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    @ManyToOne // Um ninja tem uma única missão
+    @JoinColumn(name = "missoes_id") // Lado proprietário do relacionamento: cria a Chave Estrangeira (FK) 'missoes_id' na tabela tb_cadastro, apontando para a PK de tb_missoes.
+    private MissoesModel missoes;
 }

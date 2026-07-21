@@ -2,9 +2,15 @@ package dev.java10x.cadastrodeninjas.Missoes;
 
 import dev.java10x.cadastrodeninjas.Ninjas.NinjaModel;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Table(name = "tb_missoes")
+@NoArgsConstructor
+@AllArgsConstructor
 public class MissoesModel {
     /* #P69 7 - Modelando o banco de dados - Tabela de Missões */
     // Estamos usando arquitetura em camadas
@@ -15,24 +21,8 @@ public class MissoesModel {
     private String nome;
     private String dificuldade;
 
-    @ManyToOne
-    @JoinColumn(name = "ninja_id")
-    private NinjaModel ninja;
+    /* #P70 8 - @ManyToOne e @OneToMany - Relacionamento entre tabelas */
 
-    public NinjaModel getNinja() {
-        return ninja;
-    }
-
-    public void setNinja(NinjaModel ninja) {
-        this.ninja = ninja;
-    }
-
-    public MissoesModel() {
-    }
-
-    public MissoesModel(Long id, String nome, String dificuldade) {
-        this.id = id;
-        this.nome = nome;
-        this.dificuldade = dificuldade;
-    }
+    @OneToMany(mappedBy = "missoes") // Uma missão tem vários Ninjas - mappedBy = "missoes": Indica que o lado proprietário (onde fica a Foreign Key) é o atributo 'missoes' na classe NinjaModel
+    private List<NinjaModel> ninja;
 }
