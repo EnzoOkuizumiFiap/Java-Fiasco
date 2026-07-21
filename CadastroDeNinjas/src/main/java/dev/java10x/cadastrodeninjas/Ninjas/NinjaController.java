@@ -1,10 +1,10 @@
-package dev.java10x.cadastrodeninjas;
+package dev.java10x.cadastrodeninjas.Ninjas;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class Controller {
+public class NinjaController {
     /* #P65 3 Primeira rota @GetMapping - E finalizando primeira Issue */
 
     @GetMapping("/boasvindas")
