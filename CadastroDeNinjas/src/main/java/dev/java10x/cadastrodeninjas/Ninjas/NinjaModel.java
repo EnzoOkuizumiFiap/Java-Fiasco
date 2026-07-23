@@ -27,6 +27,9 @@ public class NinjaModel {
     @Column(unique = true)
     private String email;
 
+    @Column(name = "img_url")
+    private String imgUrl;
+
     /* #P70 8 - @ManyToOne e @OneToMany - Relacionamento entre tabelas */
 
     @ManyToOne // Um ninja tem uma única missão
