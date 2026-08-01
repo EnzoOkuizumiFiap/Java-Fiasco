@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="${modoEdicao} ? 'Alterar Ninja' : 'Adicionar Ninja'">Formulário de Ninja</title>
+    <link rel="stylesheet" th:href="@{/css/ninja-form.css}">
+</head>
+<body>
+<main class="page-container">
+    <section class="form-card">
+        <a class="back-link" th:href="@{/ninjas/ui/listar}">← Voltar para a lista</a>
+
+        <p class="eyebrow" th:text="${modoEdicao} ? 'Atualização de cadastro' : 'Novo cadastro'">Novo cadastro</p>
+        <h1 th:text="${modoEdicao} ? 'Alterar dados do ninja' : 'Adicionar ninja'">Adicionar ninja</h1>
+        <p class="subtitle" th:text="${modoEdicao} ? 'Revise os dados antes de salvar as alterações.' : 'Preencha as informações para cadastrar um novo ninja.'"></p>
+
+        <form th:object="${ninja}"
+              th:action="${modoEdicao} ? @{/ninjas/ui/alterar/{id}(id=${ninja.id})} : @{/ninjas/ui/adicionar}"
+              method="post">
+            <div class="form-grid">
+                <label>
+                    Nome
+                    <input type="text" th:field="*{nome}" required maxlength="100" placeholder="Ex.: Naruto Uzumaki">
+                </label>
+                <label>
+                    Idade
+                    <input type="number" th:field="*{idade}" required min="1" max="150" placeholder="Ex.: 17">
+                </label>
+                <label class="field-wide">
+                    E-mail
+                    <input type="email" th:field="*{email}" required maxlength="150" placeholder="ninja@email.com">
+                </label>
+                <label>
+                    Rank
+                    <input type="text" th:field="*{rank}" required maxlength="50" placeholder="Ex.: Jōnin">
+                </label>
+                <label>
+                    URL da imagem
+                    <input type="url" th:field="*{imgUrl}" maxlength="500" placeholder="https://exemplo.com/imagem.jpg">
+                </label>
+            </div>
+
+            <div class="form-actions">
+                <a class="button button-secondary" th:href="@{/ninjas/ui/listar}">Cancelar</a>
+                <button class="button button-primary" type="submit" th:text="${modoEdicao} ? 'Salvar alterações' : 'Adicionar ninja'">Salvar</button>
+            </div>
+        </form>
+    </section>
+</main>
+</body>
+</html>

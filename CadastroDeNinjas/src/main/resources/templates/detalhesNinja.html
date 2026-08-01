@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="|Detalhes de ${ninja.nome}|">Detalhes do Ninja</title>
+    <link rel="stylesheet" th:href="@{/css/ninja-detalhes.css}">
+</head>
+<body>
+<main class="page-container">
+    <article class="details-card">
+        <a class="back-link" th:href="@{/ninjas/ui/listar}">← Voltar para a lista</a>
+
+        <div class="profile-header">
+            <img class="profile-image" th:src="${ninja.imgUrl}" alt="Imagem do ninja">
+            <div>
+                <p class="eyebrow">Perfil do ninja</p>
+                <h1 th:text="${ninja.nome}">Nome do ninja</h1>
+                <span class="rank-badge" th:text="${ninja.rank}">Rank</span>
+            </div>
+        </div>
+
+        <p class="feedback-message" th:if="${mensagem}" th:text="${mensagem}"></p>
+
+        <section class="info-grid" aria-label="Informações do ninja">
+            <div class="info-item">
+                <span class="info-label">Identificador</span>
+                <strong th:text="|#${ninja.id}|">#0</strong>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Idade</span>
+                <strong th:text="|${ninja.idade} anos|">0 anos</strong>
+            </div>
+            <div class="info-item info-wide">
+                <span class="info-label">E-mail</span>
+                <strong th:text="${ninja.email}">email@exemplo.com</strong>
+            </div>
+        </section>
+
+        <section class="mission-section">
+            <p class="section-label">Missão atual</p>
+            <div class="mission-content" th:if="${ninja.missoes != null}">
+                <strong th:text="${ninja.missoes.nome}">Nome da missão</strong>
+                <span th:text="|Dificuldade: ${ninja.missoes.dificuldade}|">Dificuldade</span>
+            </div>
+            <p class="no-mission" th:if="${ninja.missoes == null}">Este ninja ainda não possui uma missão cadastrada.</p>
+        </section>
+
+        <div class="page-actions">
+            <a class="button button-secondary" th:href="@{/ninjas/ui/listar}">Voltar</a>
+            <a class="button button-primary" th:href="@{/ninjas/ui/alterar/{id}(id=${ninja.id})}">Alterar dados</a>
+        </div>
+    </article>
+</main>
+</body>
+</html>

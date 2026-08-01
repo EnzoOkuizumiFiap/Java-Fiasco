@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.java10x.cadastrodeninjas.Ninjas.NinjaModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.List;
 
@@ -12,6 +14,8 @@ import java.util.List;
 @Table(name = "tb_missoes")
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
+@ToString
 public class MissoesModel {
     /* #P69 7 - Modelando o banco de dados - Tabela de Missões */
     // Estamos usando arquitetura em camadas
