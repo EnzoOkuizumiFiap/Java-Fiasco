@@ -10,8 +10,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 /* #P104 05 Cadastro de filmes */
+
+/* #P105 06 Refatorando o projeto */
+/* #P106 07 Controller - Finalizando Endpoints */
 @RestController
 @RequestMapping("/movieflix/movie")
 @RequiredArgsConstructor
@@ -25,10 +29,43 @@ public class MovieController {
                 .toList());
     }
 
+    @GetMapping("{id}")
+    public ResponseEntity<MovieResponse> findById(@PathVariable Long id) {
+        return movieService.findById(id)
+                .map(movie -> ResponseEntity.ok(MovieMapper.toMovieResponse(movie)))
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("search")
+    public ResponseEntity<List<MovieResponse>> findByCategory(@RequestParam Long category) {
+        return ResponseEntity.ok(movieService.findByCategory(category)
+                .stream()
+                .map(MovieMapper::toMovieResponse)
+                .toList());
+    }
+
     @PostMapping
     public ResponseEntity<MovieResponse> save(@RequestBody MovieRequest request) {
         Movie savedMovie = movieService.save(MovieMapper.toMovie(request));
         return ResponseEntity.ok(MovieMapper.toMovieResponse(savedMovie));
+    }
+
+    @PutMapping("{id}")
+    public ResponseEntity<MovieResponse> update(@PathVariable Long id, @RequestBody MovieRequest request) {
+        return movieService.update(id, MovieMapper.toMovie(request))
+                .map(movie -> ResponseEntity.ok(MovieMapper.toMovieResponse(movie)))
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        Optional<Movie> optMovie = movieService.findById(id);
+        if (optMovie.isPresent()) {
+            movieService.delete(id);
+            return ResponseEntity.noContent().build();
+        }
+
+        return ResponseEntity.notFound().build();
     }
 
 }

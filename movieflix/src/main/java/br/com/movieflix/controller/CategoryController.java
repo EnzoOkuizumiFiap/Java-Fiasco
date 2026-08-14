@@ -18,7 +18,7 @@ import java.util.List;
 public class CategoryController {
     private final CategoryService categoryService;
 
-    @GetMapping()
+    @GetMapping
     public ResponseEntity<List<CategoryResponse>> getALlCategories() {
         List<CategoryResponse> categories = categoryService.findAll()
                 .stream()
