@@ -1,0 +1,29 @@
+#P152 08 docker compose - Qual a diferença para o Dockerfile [PARTE 1]
+
+# Vamos rodar um banco de dados via Docker:
+## Não precisamos dele instalado no PC
+## Todos os Devs usam a mesma versão do banco
+
+# docker-compose up
+
+#P153 09 docker compose - Conexao banco de dados + Dbvear [PARTE 2]
+# Só conectamos no Dbeaver e vemos uma explicação sobre docker-compose
+
+services:
+   postgres:
+    image: postgres:latest
+    container_name: auladockercontainer
+    environment:
+      POSTGRES_DB: auladocker
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5431:5432"
+    restart: always
+
+
+
+
+
+
+
